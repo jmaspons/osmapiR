@@ -810,7 +810,6 @@ osm_history_object <- function(osm_type = c("node", "way", "relation"), osm_id,
 #'
 #' @noRd
 fetch_objects_batches <- function(osm_type, osm_ids, nchar_base, format, tags_in_columns) {
-  ids <- paste(osm_ids, collapse = ",")
   ids_batch <- 1L
   while (ids_batch[length(ids_batch)] < length(osm_ids)) {
     mis_pos <- ids_batch[length(ids_batch)]:length(osm_ids)
