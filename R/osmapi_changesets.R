@@ -1,3 +1,4 @@
+# nolint start
 ## Changesets
 # To make it easier to identify related changes the concept of changesets is introduced. Every modification of the standard OSM elements has to reference an open changeset. A changeset may contain tags just like the other elements. A recommended tag for changesets is the key {{key|comment}} with a short human readable description of the changes being made in that changeset, similar to a commit message in a revision control system. A new changeset can be opened at any time and a changeset may be referenced from multiple API calls. Because of this it can be closed manually as the server can't know when one changeset ends and another should begin. To avoid stale open changesets a mechanism is implemented to automatically close changesets upon one of the following three conditions:
 # * 10,000 edits on a single changeset (see the [[#Capabilities: GET /api/capabilities|capabilities endpoint]] for specific limits)
@@ -57,6 +58,7 @@
 # Any number of possibly editor-specific, tags are allowed. An editor might, for example, automatically include information about which background image was used, or even a bit of internal state information that will make it easier to revisit the changeset with the same editor later, etc.
 #
 # Clients ''should'' include a {{tag|created_by}} tag. Clients are advised to make sure that a {{tag|comment}} is present, which the user has entered. It is optional at the moment but this ''might'' change in later API versions. Clients ''should not'' automatically generate the comment tag, as this tag is for the end-user to describe their changes. Clients ''may'' add any other tags as they see fit.
+# nolint end
 
 #' Create, update, or close a changeset
 #'
@@ -133,6 +135,7 @@ osm_create_changeset <- function(comment, ...,
 }
 
 
+# nolint start
 ## Read: `GET /api/0.6/changeset/#id*?include_discussion='true'*` ----
 # Returns the changeset with the given `id` in OSM-XML format.
 #
@@ -215,6 +218,7 @@ osm_create_changeset <- function(comment, ...,
 # * The bounding box attributes will be missing for an empty changeset.
 # * The changeset bounding box is a rectangle that contains the bounding boxes of all objects changed in this changeset. It is not necessarily the smallest possible rectangle that does so.
 # * This API call only returns information about the changeset itself but not the actual changes made to elements in this changeset. To access this information use the ''download'' API call.
+# nolint end
 
 #' Read a changeset
 #'
@@ -339,6 +343,7 @@ osm_create_changeset <- function(comment, ...,
 }
 
 
+# nolint start
 ## Update: `PUT /api/0.6/changeset/#id` ----
 # For updating tags on the changeset, e.g. changeset {{tag|comment|foo}}.
 #
@@ -371,6 +376,7 @@ osm_create_changeset <- function(comment, ...,
 #
 ### Notes ----
 # Unchanged tags have to be repeated in order to not be deleted.
+# nolint end
 
 #' @describeIn osm_create_changeset Update the tags of an open changeset.
 #'
@@ -411,6 +417,7 @@ osm_update_changeset <- function(changeset_id, comment, ...,
 }
 
 
+# nolint start
 ## Close: `PUT /api/0.6/changeset/#id/close` ----
 # Closes a changeset. A changeset may already have been closed without the owner issuing this API call. In this case an error code is returned.
 #
@@ -429,6 +436,7 @@ osm_update_changeset <- function(changeset_id, comment, ...,
 # ; HTTP status code 409 (Conflict) - `text/plain`
 # : If the changeset in question has already been closed (either by the user itself or as a result of the auto-closing feature). A message with the format "`The changeset #id was closed at #closed_at.`" is returned
 # : Or if the user trying to update the changeset is not the same as the one that created it
+# nolint end
 
 #' @describeIn osm_create_changeset Close a changeset. A changeset may already have been closed without the owner
 #'   issuing this API call. In this case an error code is returned.
@@ -446,6 +454,7 @@ osm_close_changeset <- function(changeset_id) {
 }
 
 
+# nolint start
 ## Download: `GET /api/0.6/changeset/#id/download` ----
 # Returns the [[OsmChange]] document describing all changes associated with the changeset.
 #
@@ -464,6 +473,7 @@ osm_close_changeset <- function(changeset_id) {
 # * The result of calling this may change as long as the changeset is open.
 # * The elements in the OsmChange are sorted by timestamp and version number.
 # * There is a [https://wiki.openstreetmap.org/wiki/API_v0.6#Read:_GET_/api/0.6/changeset/#id?include_discussion=true separate call] to get only information about the changeset itself
+# nolint end
 
 #' Download a changeset in `OsmChange` format
 #'
@@ -507,6 +517,7 @@ osm_download_changeset <- function(changeset_id, format = c("R", "osc", "xml")) 
 }
 
 
+# nolint start
 ## DEPRECATED: Expand Bounding Box: `POST /api/0.6/changeset/#id/expand_bbox`</s> (deprecated, gone) ----
 #
 # ''Note: This endpoint was removed in December 2019. See this'' [https://github.com/openstreetmap/openstreetmap-website/issues/2316 GitHub issue].
@@ -555,6 +566,7 @@ osm_download_changeset <- function(changeset_id, format = c("R", "osc", "xml")) 
 ### Notes ----
 # * Only changesets by public users are returned.
 # * Returns at most 100 changesets
+# nolint end
 
 #' Query changesets
 #'
@@ -747,6 +759,7 @@ osm_download_changeset <- function(changeset_id, format = c("R", "osc", "xml")) 
 }
 
 
+# nolint start
 ## Diff upload: `POST /api/0.6/changeset/#id/upload` ----
 # With this API call files in the [[OsmChange]] format can be uploaded to the server. This is guaranteed to be running in a transaction. So either all the changes are applied or none.
 #
@@ -816,6 +829,7 @@ osm_download_changeset <- function(changeset_id, format = c("R", "osc", "xml")) 
 # * Refer to <code>/api/capabilities</code> --> ''changesets'' -> ''maximum_elements'' for the maximum number of changes permitted in a changeset.
 # * There is currently no limit in the diff size on the Rails port. CGImap limits diff size to 50MB (uncompressed size).
 # * Forward referencing of placeholder ids is not permitted and will be rejected by the API.
+# nolint end
 
 #' Diff (OsmChange format) upload to a changeset
 #'
@@ -935,6 +949,7 @@ osm_diff_upload_changeset <- function(changeset_id, osmcha, format = c("R", "xml
 }
 
 
+# nolint start
 ## Changeset summary ----
 #
 # The procedure for successful creation of a changeset is summarized in the following picture.
@@ -942,3 +957,4 @@ osm_diff_upload_changeset <- function(changeset_id, osmcha, format = c("R", "xml
 # ''Note that the picture demonstrates single object operations to create/update/delete elements as per API 0.5. For performance reasons, API users are advised to use the API 0.6 diff upload endpoint instead.''
 #
 # [[Image:OSM API0.6 Changeset successful creation V0.1.png|600px]]
+# nolint end

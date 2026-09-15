@@ -1,6 +1,7 @@
 ## Methods for user data
 
 
+# nolint start
 ## Details of a user: `GET /api/0.6/user/#id` ----
 # This API method was added in September 2012 ([https://github.com/openstreetmap/openstreetmap-website/commit/3ce4de1295ecec082313740a3cdf25c2831164f7 code]).
 #
@@ -76,6 +77,7 @@
 # or an empty file if no user found for given identifier.
 #
 # Note that user accounts which made edits may be deleted. Such users are listed at https://planet.osm.org/users_deleted/users_deleted.txt
+# nolint end
 
 #' Details of a user
 #'
@@ -184,6 +186,7 @@
 }
 
 
+# nolint start
 ## Details of multiple users: `GET /api/0.6/users?users=#id1,#id2,...,#idn` ----
 # This API method was added in July 2018 ([https://github.com/openstreetmap/openstreetmap-website/commit/b4106383d99ccbf152d79b0f2c9deca95df9fb61 code]).
 #
@@ -235,6 +238,7 @@
 #
 # or an empty file if no user found for given identifier.
 # Note: Since [https://github.com/openstreetmap/openstreetmap-website/pull/4203 Pull request 4203 (deployed on August 26 2023)], both XML and JSON based variants of the users endpoint will skip any non-existing/suspended/deleted users, rather than reporting a previously undocumented HTTP 404 error.
+# nolint end
 
 #' Details of multiple users
 #'
@@ -325,6 +329,7 @@
 }
 
 
+# nolint start
 ## Details of the logged-in user: `GET /api/0.6/user/details` ----
 # You can get the home location and the displayname of the user, by using
 #
@@ -385,6 +390,7 @@
 # </syntaxhighlight>
 #
 # The messages section has been available since mid-2013. It provides a basic counts of received, sent, and unread osm [[Web front end#User messaging|messages]].
+# nolint end
 
 #' Details of the logged-in user
 #'
@@ -486,6 +492,7 @@ osm_details_logged_user <- function(format = c("R", "xml", "json")) {
 }
 
 
+# nolint start
 ## Preferences of the logged-in user: `GET|PUT|DELETE /api/0.6/user/preferences` ----
 # The OSM server supports storing arbitrary user preferences. This can be used by editors, for example, to offer the same configuration wherever the user logs in, instead of a locally-stored configuration. For an overview of applications using the preferences-API and which key-schemes they use, see [[preferences|this wiki page]].
 #
@@ -535,6 +542,7 @@ osm_details_logged_user <- function(format = c("R", "xml", "json")) {
 # A single preference entry can be deleted with
 #
 #  DELETE /api/0.6/user/preferences/[your_key]
+# nolint end
 
 #' Get or set preferences for the logged-in user
 #'

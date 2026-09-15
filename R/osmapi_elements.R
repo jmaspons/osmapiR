@@ -1,3 +1,4 @@
+# nolint start
 ## Elements
 # There are create, read, update and delete calls for all of the three basic elements in OpenStreetMap (''Nodes'', ''Ways'' and ''Relations''). These calls are very similar except for the payload and a few special error messages so they are documented only once.
 
@@ -66,6 +67,7 @@
 # * This updates the bounding box of the changeset.
 # * The ''role'' attribute for relations is optional. An empty string is the default.
 # * To avoid performance issues when uploading multiple objects, the use of the [[API v0.6#Diff upload: POST /api/0.6/changeset/#id/upload|Diff upload]] endpoint is highly recommended.
+# nolint end
 
 #' Create an OSM object
 #'
@@ -162,6 +164,7 @@ osm_create_object <- function(x, changeset_id) {
 }
 
 
+# nolint start
 ## Read: `GET /api/0.6/[node|way|relation]/#id` ----
 # Returns the XML representation of the element.
 #
@@ -194,6 +197,7 @@ osm_create_object <- function(x, changeset_id) {
 # : When no element with the given id could be found
 # ; HTTP status code 410 (Gone)
 # : If the element has been deleted
+# nolint end
 
 #' Read an object
 #'
@@ -252,6 +256,7 @@ osm_create_object <- function(x, changeset_id) {
 }
 
 
+# nolint start
 ## Update: `PUT /api/0.6/[node|way|relation]/#id` ----
 # Updates data from a preexisting element. A full representation of the element as it should be after the update has to be provided. Any tags, way-node refs, and relation members that remain unchanged must be in the update as well. A version number must be provided as well, it '''must match''' the current version of the element in the database.
 #
@@ -303,6 +308,7 @@ osm_create_object <- function(x, changeset_id) {
 # * This updates the bounding box of the changeset.
 # * To avoid performance issues when updating multiple objects, the use of the [[API v0.6#Diff upload: POST /api/0.6/changeset/#id/upload|Diff upload]] endpoint is highly recommended. This is also the only way to ensure that multiple objects are updated in a single database transaction.
 # ** If you can't use the Diff upload and plan to update more items, mind to do it sequentially (not in parallel)
+# nolint end
 
 #' Update an OSM object
 #'
@@ -401,6 +407,7 @@ osm_update_object <- function(x, changeset_id) {
 }
 
 
+# nolint start
 ## Delete: `DELETE /api/0.6/[node|way|relation]/#id` ----
 # Expects a valid XML representation of the element to be deleted.
 #
@@ -448,6 +455,7 @@ osm_update_object <- function(x, changeset_id) {
 ### Notes ----
 # * In earlier API versions no payload was required. It is needed now because of the need for changeset IDs and version numbers.
 # * To avoid performance issues when updating multiple objects, the use of the Diff upload endpoint is highly recommended. This is also the only way to ensure that multiple objects are updated in a single database transaction.
+# nolint end
 
 #' Delete an OSM object
 #'
@@ -544,12 +552,14 @@ osm_delete_object <- function(x, changeset_id) {
 }
 
 
+# nolint start
 ## History: `GET /api/0.6/[node|way|relation]/#id/history` ----
 # Retrieves all old versions of an element, sorted by version number from oldest to newest. ([https://api.openstreetmap.org/api/0.6/way/250066046/history example])
 #
 ### Error codes ----
 # ; HTTP status code 404 (Not Found)
 # : When no element with the given id could be found
+# nolint end
 
 #' Get the history of an object
 #'
@@ -676,6 +686,7 @@ osm_history_object <- function(osm_type = c("node", "way", "relation"), osm_id,
 }
 
 
+# nolint start
 ## Multi fetch: `GET /api/0.6/[nodes|ways|relations]?#parameters` ----
 # Allows a user to fetch multiple elements at once.
 #
@@ -694,6 +705,7 @@ osm_history_object <- function(osm_type = c("node", "way", "relation"), osm_id,
 #
 ### Notes ----
 # As the multi fetch call returns deleted objects it is the practical way to determine the version at which an object was deleted (useful for example for conflict resolution), the alternative to using this would be the history call that however may potentially require 1000's of version to be processed.
+# nolint end
 
 #' Fetch objects
 #'
@@ -848,12 +860,14 @@ fetch_objects_batches <- function(osm_type, osm_ids, nchar_base, format, tags_in
 }
 
 
+# nolint start
 ## Relations for element: `GET /api/0.6/[node|way|relation]/#id/relations` ----
 # Returns a XML document containing all (not deleted) relations in which the given element is used.
 #
 ### Notes ----
 # * There is no error if the element does not exist.
 # * If the element does not exist or it isn't used in any relations an empty XML document is returned (apart from the `<osm>` elements)
+# nolint end
 
 #' Relations of an object
 #'
@@ -914,12 +928,14 @@ osm_relations_object <- function(osm_type = c("node", "way", "relation"), osm_id
 }
 
 
+# nolint start
 ## Ways for node: `GET /api/0.6/node/#id/ways` ----
 # Returns a XML document containing all the (not deleted) ways in which the given node is used.
 #
 ### Notes ----
 # * There is no error if the node does not exist.
 # * If the node does not exist or it isn't used in any ways an empty XML document is returned (apart from the `<osm>` elements)
+# nolint end
 
 #' Ways of a node
 #'
@@ -971,6 +987,7 @@ osm_ways_node <- function(node_id, format = c("R", "xml", "json"), tags_in_colum
 }
 
 
+# nolint start
 ## Full: `GET /api/0.6/[way|relation]/#id/full` ----
 # This API call retrieves a way or relation and all other elements referenced by it
 # * For a way, it will return the way specified plus the full XML of all nodes referenced by the way.
@@ -985,6 +1002,7 @@ osm_ways_node <- function(node_id, format = c("R", "xml", "json"), tags_in_colum
 # : When no element with the given id could be found
 # ; HTTP status code 410 (Gone)
 # : If the element has been deleted
+# nolint end
 
 #' Full object
 #'
@@ -1057,6 +1075,7 @@ osm_ways_node <- function(node_id, format = c("R", "xml", "json"), tags_in_colum
 }
 
 
+# nolint start
 ## Redaction: `POST /api/0.6/[node|way|relation]/#id/#version/redact?redaction=#redaction_id` ----
 # This is an API method originally created for the [[Open Database License|ODbL license change]] to hide contributions from users that did not accept the new CT/licence. It is now used by the [[Data working group|DWG]] to hide old versions of elements containing data privacy or copyright infringements. All API retrieval request for the element #version will return an HTTP error 403.
 #
@@ -1070,6 +1089,7 @@ osm_ways_node <- function(node_id, format = c("R", "xml", "json"), tags_in_colum
 ### Error codes ----
 # ; HTTP status code 400 (Bad Request)
 # : "Cannot redact current version of element, only historical versions may be redacted."
+# nolint end
 
 #' Redact an object version
 #'

@@ -1,3 +1,4 @@
+# nolint start
 ## GPS traces
 #
 # In violation of the [https://www.topografix.com/GPX/1/1/#type_trksegType GPX standard] when downloading public GPX traces through the API, all waypoints of non-trackable traces are randomized (or rather sorted by lat/lon) and delivered as one trackSegment for privacy reasons. Trackable traces are delivered, sorted by descending upload time, before the waypoints of non-trackable traces.
@@ -42,6 +43,7 @@
 #   ...
 # </gpx>
 # </syntaxhighlight>
+# nolint end
 
 #' Get GPS Points
 #'
@@ -119,6 +121,7 @@
 }
 
 
+# nolint start
 ## Create: `POST /api/0.6/gpx` ----
 #
 # Also available at `POST /api/0.6/gpx/create` (deprecated)
@@ -152,6 +155,7 @@
 ### Error codes ----
 # ; HTTP status code 400 (Bad Request)
 # : When the description is empty
+# nolint end
 
 #' Create GPS trace
 #'
@@ -202,10 +206,13 @@ osm_create_gpx <- function(file, description, tags, visibility = c("trackable", 
   return(out)
 }
 
+
+# nolint start
 ## Update: `PUT /api/0.6/gpx/#id` ----
 # Use this to update the metadata of a GPX file. Only usable by the owner account. Requires authentication. The request body is an xml file with the same structure as the responses of [[API_v0.6#Download_Metadata:_GET_/api/0.6/gpx/#id|Download Metadata]].
 # The response body will be empty.
 # https://github.com/openstreetmap/openstreetmap-website/blob/master/app/controllers/api/traces_controller.rb#L51
+# nolint end
 
 #' Update GPS trace
 #'
@@ -268,10 +275,12 @@ osm_update_gpx <- function(gpx_id, name, description, tags,
 }
 
 
+# nolint start
 ## Delete: `DELETE /api/0.6/gpx/#id` ----
 # Use this to delete a GPX file. Only usable by the owner account. Requires authentication.<br />The response body will be empty.
 ## TODO: improve wiki. Poor documentation
 # https://github.com/openstreetmap/openstreetmap-website/blob/master/app/controllers/api/traces_controller.rb#L64
+# nolint end
 
 #' Delete GPS trace
 #'
@@ -296,6 +305,7 @@ osm_update_gpx <- function(gpx_id, name, description, tags,
 }
 
 
+# nolint start
 ## Download Metadata: `GET /api/0.6/gpx/#id` ----
 #
 # Also available at `GET /api/0.6/gpx/#id/details` (deprecated)
@@ -315,6 +325,7 @@ osm_update_gpx <- function(gpx_id, name, description, tags,
 # Note: the <code>uid</code> attribute was added in {{gitHub link|openstreetmap/openstreetmap-website/pull/4241| September 2023}}.
 #
 # This API call also supports a JSON response.
+# nolint end
 
 #' Download GPS Track Metadata
 #'
@@ -371,6 +382,7 @@ osm_update_gpx <- function(gpx_id, name, description, tags,
 }
 
 
+# nolint start
 ## Download Data: `GET /api/0.6/gpx/#id/data` ----
 #
 # Use this to download the full GPX file. Available without authentication if the file is marked public. Otherwise only usable by the owner account and requires authentication.
@@ -379,7 +391,7 @@ osm_update_gpx <- function(gpx_id, name, description, tags,
 #
 # NOTE: if you request refers to a multi-file archive the response when you force gpx or xml format will consist of a non-standard simple concatenation of the files.
 ## TODO Available without authentication if the file is marked public is FALSE. API error?
-
+# nolint end
 
 #' Download GPS Track Data
 #'
@@ -455,6 +467,7 @@ osm_get_data_gpx <- function(gpx_id, format) {
 }
 
 
+# nolint start
 ## List: `GET /api/0.6/user/gpx_files` ----
 # Use this to get a list of GPX traces owned by the authenticated user: Requires authentication.
 #
@@ -476,6 +489,7 @@ osm_get_data_gpx <- function(gpx_id, format) {
 #   </gpx_file>
 # </osm>
 # </syntaxhighlight>
+# nolint end
 
 #' List user's GPX traces
 #'

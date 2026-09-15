@@ -1,3 +1,4 @@
+# nolint start
 ## Miscellaneous
 #
 #
@@ -29,6 +30,7 @@
 #   }
 # }
 # </syntaxhighlight>
+# nolint end
 
 #' Available API versions
 #'
@@ -53,6 +55,7 @@ osm_api_versions <- function() {
 }
 
 
+# nolint start
 ## Capabilities: `GET /api/0.6/capabilities` ----
 # Also available as: `GET /api/capabilities`. The unversioned version of this API endpoint is however {{GitHub link|openstreetmap/openstreetmap-website/commit/2398614349e3ff5605868fea82e013d2a9a16ef9|deprecated}} in favor of [[API_v0.6#Available_API_versions:_GET_/api/versions| checking the available versions]] first, then accessing the capabilities of a particular version.
 # This API call is meant to provide information about the capabilities and limitations of the API server.
@@ -104,6 +107,7 @@ osm_api_versions <- function() {
 #
 ### Notes ----
 # * Element and relation member ids are currently implementation dependent limited to 64bit signed integers, this should not be a problem :-).
+# nolint end
 
 #' Capabilities of the API
 #'
@@ -174,6 +178,7 @@ osm_capabilities <- function() {
 }
 
 
+# nolint start
 ## Retrieving map data by bounding box: `GET /api/0.6/map` ----
 # The following command returns:
 # * All nodes that are inside a given bounding box and any relations that reference them.
@@ -202,6 +207,7 @@ osm_capabilities <- function() {
 #
 # ; HTTP status code 509 (Bandwidth Limit Exceeded)
 # : "Error:  You have downloaded too much data. Please try again later." See [[Developer FAQ#I've been blocked from the API for downloading too much. Now what?|Developer FAQ]].
+# nolint end
 
 #' Retrieve map data by bounding box
 #'
@@ -280,6 +286,7 @@ osm_bbox_objects <- function(bbox, format = c("R", "xml", "json"), tags_in_colum
 }
 
 
+# nolint start
 ## Retrieving permissions: `GET /api/0.6/permissions` ----
 # Returns the permissions granted to the current API connection.
 #
@@ -332,6 +339,7 @@ osm_bbox_objects <- function(bbox, format = c("R", "xml", "json"), tags_in_colum
 # * allow_write_blocks (create and revoke user blocks)
 # * allow_consume_messages (read, update status and delete user messages)
 # * allow_send_messages (send private messages to other users)
+# nolint end
 
 #' Retrieving permissions
 #'

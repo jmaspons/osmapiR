@@ -27,12 +27,14 @@ bbox_to_string <- function(bbox) {
       bbox <- apply(bbox, 2, range)
     }
 
-    if (all(c("x", "y") %in% tolower(rownames(bbox))) & all(c("min", "max") %in% tolower(colnames(bbox)))) {
+    if (all(c("x", "y") %in% tolower(rownames(bbox))) &&
+          all(c("min", "max") %in% tolower(colnames(bbox)))) {
       bbox <- c(
         bbox["x", "min"], bbox["y", "min"],
         bbox["x", "max"], bbox["y", "max"]
       )
-    } else if (all(c("coords.x1", "coords.x2") %in% rownames(bbox)) & all(c("min", "max") %in% colnames(bbox))) {
+    } else if (all(c("coords.x1", "coords.x2") %in% rownames(bbox)) &&
+                 all(c("min", "max") %in% colnames(bbox))) {
       bbox <- c(
         bbox["coords.x1", "min"], bbox["coords.x2", "min"],
         bbox["coords.x1", "max"], bbox["coords.x2", "max"]

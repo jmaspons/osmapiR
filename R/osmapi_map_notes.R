@@ -1,3 +1,4 @@
+# nolint start
 ## Map Notes API
 #
 # This provides access to the [[notes]] feature, which allows users to add geo-referenced textual "post-it" notes. This feature was not originally in the API 0.6 and was only added later ( 04/23/2013 in commit 0c8ad2f86edefed72052b402742cadedb0d674d9 ). As this was intended as a compatible replacement for the [[OpenStreetBugs]] API there are numerous idiosyncrasies relative to how the other parts of the OSM API work.
@@ -101,6 +102,7 @@
 ### Error codes ----
 # ; HTTP status code 400 (Bad Request)
 # : When any of the limits are crossed
+# nolint end
 
 #' Retrieve notes by bounding box
 #'
@@ -225,6 +227,7 @@ osm_read_bbox_notes <- function(bbox, limit = 100, closed = 7, format = c("R", "
 }
 
 
+# nolint start
 ## Read: `GET /api/0.6/notes/#id` ----
 #
 # Returns the existing note with the given ID. The output can be in several formats (e.g. XML, RSS, json or GPX) depending on the file extension.
@@ -235,6 +238,7 @@ osm_read_bbox_notes <- function(bbox, limit = 100, closed = 7, format = c("R", "
 ### Error codes ----
 # ; HTTP status code 404 (Not Found)
 # : When no note with the given id could be found. This should only be returned for not yet existing notes.
+# nolint end
 
 #' Read notes
 #'
@@ -280,6 +284,7 @@ osm_read_bbox_notes <- function(bbox, limit = 100, closed = 7, format = c("R", "
 }
 
 
+# nolint start
 ## Create a new note: `POST /api/0.6/notes` ----
 #
 ### XML ----
@@ -334,6 +339,7 @@ osm_read_bbox_notes <- function(bbox, limit = 100, closed = 7, format = c("R", "
 # : This applies, if the request is not a HTTP POST request
 # ; <s>HTTP status code 405 (Method Not Allowed)</s>
 # : <s>If the request is not a HTTP POST request</s>
+# nolint end
 
 #' Create a new note
 #'
@@ -371,6 +377,7 @@ osm_create_note <- function(lat, lon, text, authenticate = TRUE) { # TODO: , for
 }
 
 
+# nolint start
 ## Create a new comment: `POST /api/0.6/notes/#id/comment` ----
 #
 # Add a new comment to note #id
@@ -408,6 +415,7 @@ osm_create_note <- function(lat, lon, text, authenticate = TRUE) { # TODO: , for
 # : When the note is closed
 # ; HTTP status code 410 (Gone)
 # : When the note has been hidden by a moderator. Note that the error message "The note with the id nnnnnnnnn has already been deleted" is misleading, as it isn't actually possible for non-moderators to delete (hide) Notes via the API.
+# nolint end
 
 #' Create a new comment in a note
 #'
@@ -443,6 +451,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 }
 
 
+# nolint start
 ## Close: `POST /api/0.6/notes/#id/close` ----
 #
 # Close a note as fixed.
@@ -462,6 +471,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 # : When closing an already closed note
 # ; HTTP status code 410 (Gone)
 # : When the note has been hidden by a moderator. Note that the error message "The note with the id nnnnnnnnn has already been deleted" is misleading, as it isn't actually possible for a non-moderator to delete/hide Notes via the API.
+# nolint end
 
 #' Close or reopen a note
 #'
@@ -498,6 +508,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 }
 
 
+# nolint start
 ## Reopen: `POST /api/0.6/notes/#id/reopen` ----
 #
 # Reopen a closed note.
@@ -517,6 +528,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 # : When reopening an already open note
 # ; HTTP status code 410 (Gone)
 # : When reopening a deleted note
+# nolint end
 
 #' @describeIn osm_close_note Reopen a closed note.
 #'
@@ -535,6 +547,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 }
 
 
+# nolint start
 ## Hide: `DELETE /api/0.6/notes/#id` ----
 #
 # Hide (delete) a note.
@@ -553,6 +566,7 @@ osm_create_comment_note <- function(note_id, text) { # TODO: , format = c("R", "
 # : When no note with the given id could be found
 # ; HTTP status code 410 (Gone)
 # : When hiding a note that is already hidden
+# nolint end
 
 #' Delete a note
 #'
@@ -663,6 +677,7 @@ osm_unsubscribe_note <- function(note_id) { # TODO: , format = c("R", "xml", "js
 }
 
 
+# nolint start
 ## Search for notes: `GET /api/0.6/notes/search` ----
 #
 # Returns notes that match the specified query. If no query is provided, the most recently updated notes are returned.
@@ -742,6 +757,7 @@ osm_unsubscribe_note <- function(note_id) { # TODO: , format = c("R", "xml", "js
 ### Error codes ----
 # ; HTTP status code 400 (Bad Request)
 # : When any of the limits are crossed
+# nolint end
 
 #' Search for notes
 #'
@@ -867,6 +883,7 @@ osm_search_notes <- function(
 }
 
 
+# nolint start
 ## RSS Feed: `GET /api/0.6/notes/feed` ----
 #
 # Gets an RSS feed for notes within an area.
@@ -887,6 +904,7 @@ osm_search_notes <- function(
 # | Floating point numbers in degrees, expressing a valid bounding box, not larger than the configured size limit, 25 square degrees [https://github.com/openstreetmap/openstreetmap-website/blob/master/config/settings.yml#L27], not overlapping the dateline.
 # | none, optional parameter
 # |}
+# nolint end
 
 #' RSS Feed of notes in a bbox
 #'

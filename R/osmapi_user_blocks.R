@@ -92,6 +92,7 @@ osm_create_user_block <- function(user_id, reason, period, needs_view = FALSE, f
 }
 
 
+# nolint start
 ## Read: `GET /api/0.6/user_blocks/#id` ----
 #
 ### Response XML ----
@@ -132,6 +133,7 @@ osm_create_user_block <- function(user_id, reason, period, needs_view = FALSE, f
 #   }
 # }
 # </syntaxhighlight>
+# nolint end
 
 #' Read user block
 #'
@@ -211,6 +213,7 @@ osm_create_user_block <- function(user_id, reason, period, needs_view = FALSE, f
 }
 
 
+# nolint start
 ## List active blocks: `GET /api/0.6/user/blocks/active` ----
 #
 # Allows the applications to check if the currently authorized user is blocked.
@@ -265,6 +268,7 @@ osm_create_user_block <- function(user_id, reason, period, needs_view = FALSE, f
 # </syntaxhighlight>
 #
 # Empty <code>user_blocks</code> array indicates no active blocks.
+# nolint end
 
 #' List active blocks
 #'

@@ -70,7 +70,7 @@ test_that(".osm_read_object works", {
   lapply(read, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(read, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
 
@@ -234,7 +234,7 @@ test_that("osm_history_object works", {
   lapply(history, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(history, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
   expect_named(history$node[, seq_along(column_objects)], column_objects)
@@ -283,7 +283,7 @@ test_that(".osm_version_object works", {
   lapply(version, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(version, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
   expect_named(version$node[, seq_along(column_objects)], column_objects)
@@ -332,7 +332,7 @@ test_that(".osm_fetch_objects works", {
   lapply(fetch, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(fetch, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
   expect_named(fetch$node[, seq_along(column_objects)], column_objects)
@@ -506,7 +506,7 @@ test_that("osm_relations_object works", {
   lapply(rels, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(rels, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
   lapply(rels, function(x) expect_named(x[, seq_along(column_objects)], column_objects))
@@ -540,7 +540,7 @@ test_that("osm_ways_node works", {
 
   expect_s3_class(ways_node, c("osmapi_objects", "data.frame"))
   lapply(ways_node$members, function(x) {
-    expect_true(is.null(x) | inherits(x, "way_members") | inherits(x, "relation_members"))
+    expect_true(is.null(x) || inherits(x, "way_members") || inherits(x, "relation_members"))
   })
   expect_named(ways_node[, seq_along(column_objects)], column_objects)
 
@@ -586,7 +586,7 @@ test_that(".osm_full_object works", {
   lapply(full, expect_s3_class, c("osmapi_objects", "data.frame"))
   lapply(full, function(x) {
     lapply(x$members, function(y) {
-      expect_true(is.null(y) | inherits(y, "way_members") | inherits(y, "relation_members"))
+      expect_true(is.null(y) || inherits(y, "way_members") || inherits(y, "relation_members"))
     })
   })
   lapply(full, function(x) expect_named(x[, seq_along(column_objects)], column_objects))

@@ -47,7 +47,7 @@ test_that("osm_uns_changeset_discussion works", {
 test_that("osm_search_comment_changeset_discussion works", {
   with_mock_dir("mock_search_comment", {
     disc <- osm_search_comment_changeset_discussion(user = "Steve")
-    disc_xml<- osm_search_comment_changeset_discussion(user = "Steve", format = "xml")
+    disc_xml <- osm_search_comment_changeset_discussion(user = "Steve", format = "xml")
     disc_json <- osm_search_comment_changeset_discussion(
       user = 355617, from = as.POSIXct("2017-10-1"), to = as.POSIXlt("2017-10-2"), format = "json"
     )

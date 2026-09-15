@@ -32,7 +32,7 @@ test_that("osm_bbox_objects works", {
 
   expect_s3_class(bbox_objects, c("osmapi_objects", "data.frame"))
   lapply(bbox_objects$members, function(x) {
-    expect_true(is.null(x) | inherits(x, "way_members") | inherits(x, "relation_members"))
+    expect_true(is.null(x) || inherits(x, "way_members") || inherits(x, "relation_members"))
   })
 
   obj_cols <- c(

@@ -1,3 +1,4 @@
+# nolint start
 ## Changeset discussion
 #
 # Changeset discussions were added in November 2014 ([https://blog.openstreetmap.org/2014/11/02/introducing-changeset-discussions/ See blog])
@@ -25,6 +26,7 @@
 #
 ### Notes ----
 # * requires either <code>write_api</code> or <code>write_changeset_comments</code> OAuth scope
+# nolint end
 
 #' Comment a changeset
 #'
@@ -145,6 +147,7 @@ osm_unsubscribe_changeset_discussion <- function(changeset_id) { # TODO: , forma
 }
 
 
+# nolint start
 ## Search changeset comments: `GET /api/0.6/changeset_comments` ----
 #
 # Returns changeset comments that match the specified query. If no query is provided, the most recent changeset comments are returned.
@@ -190,6 +193,7 @@ osm_unsubscribe_changeset_discussion <- function(changeset_id) { # TODO: , forma
 ### Error codes ----
 # ;HTTP status code 400 (Bad Request)
 # :When any of the limits are crossed
+# nolint end
 
 #' Search changeset comments
 #'
